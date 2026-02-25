@@ -29,12 +29,12 @@ export default function Layout() {
   };
 
   const navItems = [
-    { icon: LayoutDashboard, label: t('Dashboard'), path: '/' },
-    { icon: Users, label: t('Patients'), path: '/patients' },
-    { icon: Calendar, label: t('Appointments'), path: '/appointments' },
-    { icon: Receipt, label: t('Billing'), path: '/billing' },
-    { icon: FileText, label: t('Prescriptions'), path: '/prescriptions' },
-    { icon: Settings, label: t('Settings'), path: '/settings' },
+    { icon: LayoutDashboard, label: t('Dashboard'), path: '/dashboard' },
+    { icon: Users, label: t('Patients'), path: '/dashboard/patients' },
+    { icon: Calendar, label: t('Appointments'), path: '/dashboard/appointments' },
+    { icon: Receipt, label: t('Billing'), path: '/dashboard/billing' },
+    { icon: FileText, label: t('Prescriptions'), path: '/dashboard/prescriptions' },
+    { icon: Settings, label: t('Settings'), path: '/dashboard/settings' },
   ];
 
   return (
