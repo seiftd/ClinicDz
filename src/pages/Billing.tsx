@@ -3,6 +3,8 @@ import { Plus, Printer, Download } from 'lucide-react';
 import { format } from 'date-fns';
 import { jsPDF } from 'jspdf';
 
+import { API_URL } from '../config';
+
 export default function Billing() {
   const [invoices, setInvoices] = useState<any[]>([]);
   const [patients, setPatients] = useState<any[]>([]);
@@ -30,7 +32,7 @@ export default function Billing() {
   };
 
   const fetchPatients = async () => {
-    const res = await fetch('http://localhost:3000/api/patients');
+    const res = await fetch(`${API_URL}/api/patients`);
     const data = await res.json();
     setPatients(data);
   };
@@ -50,7 +52,7 @@ export default function Billing() {
     e.preventDefault();
     const total = calculateTotal();
     
-    await fetch('http://localhost:3000/api/invoices', {
+    await fetch(`${API_URL}/api/invoices`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

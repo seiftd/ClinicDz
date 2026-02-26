@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { format, startOfWeek, addDays, isSameDay } from 'date-fns';
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 
+import { API_URL } from '../config';
+
 export default function Appointments() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [appointments, setAppointments] = useState<any[]>([]);
@@ -20,13 +22,13 @@ export default function Appointments() {
   }, []);
 
   const fetchAppointments = async () => {
-    const res = await fetch('http://localhost:3000/api/appointments');
+    const res = await fetch(`${API_URL}/api/appointments`);
     const data = await res.json();
     setAppointments(data);
   };
 
   const fetchPatients = async () => {
-    const res = await fetch('http://localhost:3000/api/patients');
+    const res = await fetch(`${API_URL}/api/patients`);
     const data = await res.json();
     setPatients(data);
   };
@@ -41,7 +43,7 @@ export default function Appointments() {
     e.preventDefault();
     const dateTime = new Date(`${newAppointment.date}T${newAppointment.time}`);
     
-    await fetch('http://localhost:3000/api/appointments', {
+    await fetch(`${API_URL}/api/appointments`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

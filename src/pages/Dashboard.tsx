@@ -12,6 +12,8 @@ import {
 } from 'recharts';
 import { Users, Calendar, DollarSign, TrendingUp } from 'lucide-react';
 
+import { API_URL } from '../config';
+
 export default function Dashboard() {
   const [stats, setStats] = useState({
     patientCount: 0,
@@ -21,7 +23,7 @@ export default function Dashboard() {
   });
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/stats')
+    fetch(`${API_URL}/api/stats`)
       .then(res => res.json())
       .then(data => setStats(data))
       .catch(err => console.error(err));

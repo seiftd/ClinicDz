@@ -17,6 +17,8 @@ const patientSchema = z.object({
 
 type PatientForm = z.infer<typeof patientSchema>;
 
+import { API_URL } from '../config';
+
 export default function Patients() {
   const [patients, setPatients] = useState<any[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,14 +32,14 @@ export default function Patients() {
   }, []);
 
   const fetchPatients = async () => {
-    const res = await fetch('http://localhost:3000/api/patients');
+    const res = await fetch(`${API_URL}/api/patients`);
     const data = await res.json();
     setPatients(data);
   };
 
   const onSubmit = async (data: PatientForm) => {
     try {
-      const res = await fetch('http://localhost:3000/api/patients', {
+      const res = await fetch(`${API_URL}/api/patients`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
